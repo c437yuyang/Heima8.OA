@@ -17,19 +17,20 @@ namespace Heima8.OA.BLL
 
         public IDbSession DbSession
         {
-            get
-            {
-                return DbSessionFactory.GetCurrentDbSession();
-            }
-        }
+            //get
+            //{
+            //    return DbSessionFactory.GetCurrentDbSession();
+            //}
+            get; set; }
 
-        public BaseService()//基类的构造函数
-        {
-            SetCurrentDal();//抽象方法。
-            //CurrentDal = currentDal;
-        }
+        //public BaseService(IDbSession dbSession)//基类的构造函数
+        //{
+        //    this.DbSession = dbSession;
+        //    SetCurrentDal();//抽象方法。
+        //    //CurrentDal = currentDal;
+        //}
 
-        public abstract void SetCurrentDal();//抽象方法：要求子类必须实现。
+        //public abstract void SetCurrentDal();//抽象方法：要求子类必须实现。
 
         #region 查询
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using Heima8.OA.DALFactory;
@@ -53,9 +54,16 @@ namespace Heima8.OA.BLL
         //} 
         #endregion
 
-        public override void SetCurrentDal()
-        {
-            CurrentDal = this.DbSession.UserInfoDal;
-        }
+
+        //public UserInfoService(IDbSession dbSession)
+        //    : base(dbSession)
+        //{
+        //    //this.DbSession = dbSession;
+        //}
+
+        //public override void SetCurrentDal()
+        //{
+        //    CurrentDal = this.DbSession.UserInfoDal;
+        //}
     }
 }

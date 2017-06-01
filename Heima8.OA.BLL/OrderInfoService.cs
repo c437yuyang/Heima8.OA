@@ -7,17 +7,25 @@ using Heima8.OA.NHDAL;
 
 namespace Heima8.OA.BLL
 {
-    public class OrderInfoService:BaseService<OrderInfo>,IOrderInfoService
+    public class OrderInfoService : BaseService<OrderInfo>, IOrderInfoService
     {
         //public OrderInfo Add(OrderInfo orderInfo)
         //{
         //    IUserInfoDal UserInfoDal = StaticDalFactory.GetUserInfoDal();
         //    return orderInfo;
         //}
-    
-        public override void SetCurrentDal()
-        {
-            CurrentDal = DbSession.OrderInfoDal;
-        }
+
+        //public OrderInfoService(IDbSession dbSession):base(dbSession)
+        //{
+
+        //    //this.DbSession = dbSession;
+
+        //}
+
+
+        //public override void SetCurrentDal()
+        //{
+        //    CurrentDal = DbSession.OrderInfoDal;
+        //}
     }
 }
