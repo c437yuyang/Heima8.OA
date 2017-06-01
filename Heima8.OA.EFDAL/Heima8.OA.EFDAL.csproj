@@ -45,6 +45,11 @@
   <ItemGroup>
     <Compile Include="BaseDal.cs" />
     <Compile Include="DbContextFactory.cs" />
+    <Compile Include="Dals.cs">
+      <DependentUpon>Dals.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="OrderInfoDal.cs" />
     <Compile Include="UserInfoDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +63,15 @@
       <Project>{8E5A850C-ECD7-4272-ABDD-0A5864033B6B}</Project>
       <Name>Heima8.OA.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dals.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Dals.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

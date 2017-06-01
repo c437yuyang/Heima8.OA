@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using Heima8.OA.EFDAL;
+﻿using System.Reflection;
 using Heima8.OA.IDAL;
-using Heima8.OA.NHDAL;
 
 namespace Heima8.OA.DALFactory
 {
@@ -16,22 +8,24 @@ namespace Heima8.OA.DALFactory
     /// 抽象工厂  VS  简单工厂
     /// 
     /// </summary>
-    public class StaticDalFactory
+    public partial class StaticDalFactory
     {
         public  static string assemblyName = System.Configuration.ConfigurationManager.AppSettings["DalAssemblyName"];
-        public static IUserInfoDal GetUserInfoDal()
-        {
-            //HttpRuntime.Cache.Get("")
-            //return new NhUserInfoDal();
-            //把上面的new去掉：希望改一个配置那么创建实例就发生变化，不需要改代码。
-            return Assembly.Load(assemblyName).CreateInstance(assemblyName+".UserInfoDal") //UserInfoDal就不用读配置了，约定大于配置
-                   as IUserInfoDal;
-        }
+#region 改为由T4模板生成
+        //public static IUserInfoDal GetUserInfoDal()
+        //{
+        //    //HttpRuntime.Cache.Get("")
+        //    //return new NhUserInfoDal();
+        //    //把上面的new去掉：希望改一个配置那么创建实例就发生变化，不需要改代码。
+        //    return Assembly.Load(assemblyName).CreateInstance(assemblyName+".UserInfoDal") //UserInfoDal就不用读配置了，约定大于配置
+        //           as IUserInfoDal;
+        //}
 
-        public static IOrderInfoDal GetOrderInfoDal()
-        {
-            return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".OrderInfoDal")
-                as IOrderInfoDal;
-        }
+        //public static IOrderInfoDal GetOrderInfoDal()
+        //{
+        //    return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".OrderInfoDal")
+        //        as IOrderInfoDal;
+        //}
+#endregion
     }
 }

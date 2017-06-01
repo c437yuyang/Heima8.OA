@@ -7,7 +7,7 @@ using Heima8.OA.Model;
 
 namespace Heima8.OA.IDAL
 {
-    public interface IUserInfoDal:IBaseDal<UserInfo>
+    public partial interface IUserInfoDal:IBaseDal<UserInfo>
     {
 
     }

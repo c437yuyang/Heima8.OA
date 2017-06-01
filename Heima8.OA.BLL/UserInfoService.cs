@@ -17,7 +17,7 @@ namespace Heima8.OA.BLL
 
     //变化点：1、跨数据库。有mysql，slqserver2、数据库访问驱动层驱动变化。
 
-    public class UserInfoService:BaseService<UserInfo>,IUserInfoService //crud
+    public partial class UserInfoService:BaseService<UserInfo>,IUserInfoService //crud
     {
         #region old2
         //让一个菜鸟到另一个一般开发人员。

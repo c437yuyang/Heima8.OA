@@ -2,7 +2,7 @@
 
 namespace Heima8.OA.IDAL
 {
-    public interface IOrderInfoDal:IBaseDal<OrderInfo>
+    public partial interface IOrderInfoDal:IBaseDal<OrderInfo>
     {
          
     }

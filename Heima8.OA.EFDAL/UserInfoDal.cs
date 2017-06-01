@@ -10,7 +10,7 @@ using Heima8.OA.Model;
 
 namespace Heima8.OA.EFDAL
 {
-    public class UserInfoDal:BaseDal<UserInfo>,IUserInfoDal
+    public partial class UserInfoDal:BaseDal<UserInfo>,IUserInfoDal
     {
         public string Name { get; set; }//第一次请求来。给Name赋值1. 第二次来拿到Name属性：3
 

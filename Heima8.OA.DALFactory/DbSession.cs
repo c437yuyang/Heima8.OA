@@ -3,17 +3,17 @@ using Heima8.OA.IDAL;
 
 namespace Heima8.OA.DALFactory
 {
-    public class DbSession :IDbSession
+    public partial class DbSession :IDbSession
     {
-        #region 简单工厂或者抽象工厂部分
-        public IUserInfoDal UserInfoDal
-        {
-            get { return StaticDalFactory.GetUserInfoDal(); }
-        }
-        public IOrderInfoDal OrderInfoDal
-        {
-            get { return StaticDalFactory.GetOrderInfoDal(); }
-        } 
+        #region 简单工厂或者抽象工厂部分,由模板自动生成
+        //public IUserInfoDal UserInfoDal
+        //{
+        //    get { return StaticDalFactory.GetUserInfoDal(); }
+        //}
+        //public IOrderInfoDal OrderInfoDal
+        //{
+        //    get { return StaticDalFactory.GetOrderInfoDal(); }
+        //} 
         #endregion
 
         /// <summary>
