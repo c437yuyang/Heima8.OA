@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0434c0c48ee4ababd0ab2019bc36fb7" Name="关系图1" >
+        <EntityTypeShape EntityType="DataModel.UserInfo" Width="1.5" PointX="1.375" PointY="1" />
+        <EntityTypeShape EntityType="DataModel.OrderInfo" Width="1.5" PointX="4.125" PointY="1" />
+        <AssociationConnector Association="DataModel.UserInfoOrderInfo" />
+        <EntityTypeShape EntityType="DataModel.RoleInfo" Width="1.5" PointX="7.125" PointY="1.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
