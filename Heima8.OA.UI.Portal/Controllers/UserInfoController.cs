@@ -41,10 +41,10 @@ namespace Heima8.OA.UI.Portal.Controllers
         public ActionResult Delete(int Id)
         {
 
-            ViewData.Model = UserInfoService.GetEntities(u => u.ID == Id).FirstOrDefault();
+            //ViewData.Model = UserInfoService.GetEntities(u => u.ID == Id).FirstOrDefault();
+            throw (new Exception());
 
-           
-            return View();
+            //return View();
         }
 
         [HttpPost]

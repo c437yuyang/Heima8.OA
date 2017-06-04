@@ -21,6 +21,9 @@ namespace Heima8.OA.Model
     
         public int ID { get; set; }
         public string UName { get; set; }
+        public string Pwd { get; set; }
+        public string NickName { get; set; }
+        public short DelFlag { get; set; }
     
         public virtual ICollection<OrderInfo> OrderInfo { get; set; }
     }

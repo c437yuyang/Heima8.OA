@@ -21,6 +21,9 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UName" Type="nvarchar" Nullable="true" MaxLength="32" />
+    <Property Name="Pwd" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="NickName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DelFlag" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderInfo">
     <Key>
@@ -75,6 +78,9 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="UName" Nullable="true" MaxLength="32" />
           <NavigationProperty Name="OrderInfo" Relationship="DataModel.UserInfoOrderInfo" FromRole="UserInfo" ToRole="OrderInfo" />
+          <Property Type="String" Name="Pwd" Nullable="false" Unicode="false" MaxLength="32" />
+          <Property Type="String" Name="NickName" Nullable="false" />
+          <Property Type="Int16" Name="DelFlag" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderInfo">
           <Key>
@@ -120,6 +126,9 @@
         <MappingFragment StoreEntitySet="UserInfo">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UName" ColumnName="UName" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="DelFlag" ColumnName="DelFlag" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

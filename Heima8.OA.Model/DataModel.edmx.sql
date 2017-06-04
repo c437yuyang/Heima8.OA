@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/01/2017 22:45:12
+-- Date Created: 06/04/2017 17:49:41
 -- Generated from EDMX file: I:\My Documents\My Desktop\codes\ASP.NET\Heima8.OA\Heima8.OA.Model\DataModel.edmx
 -- --------------------------------------------------
 
@@ -34,6 +34,9 @@ GO
 IF OBJECT_ID(N'[dbo].[RoleInfo]', 'U') IS NOT NULL
     DROP TABLE [dbo].[RoleInfo];
 GO
+IF OBJECT_ID(N'[dbo].[ActionInfo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ActionInfo];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -42,7 +45,10 @@ GO
 -- Creating table 'UserInfo'
 CREATE TABLE [dbo].[UserInfo] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [UName] nvarchar(32)  NULL
+    [UName] nvarchar(32)  NULL,
+    [Pwd] varchar(32)  NOT NULL,
+    [NickName] nvarchar(max)  NOT NULL,
+    [DelFlag] smallint  NOT NULL
 );
 GO
 

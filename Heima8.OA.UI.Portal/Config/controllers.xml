@@ -8,6 +8,9 @@
   <object type="Heima8.OA.UI.Portal.Controllers.OrderInfoController, Heima8.OA.UI.Portal" singleton="false" >
     <property name="OrderInfoService" ref="OrderInfoService" />
   </object>
-  
+
+	<object type="Heima8.OA.UI.Portal.Controllers.UserLoginController, Heima8.OA.UI.Portal" singleton="false" >
+		<property name="UserInfoService" ref="UserInfoService" />
+	</object>
 
 </objects>

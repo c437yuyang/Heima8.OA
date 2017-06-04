@@ -11,17 +11,40 @@ namespace Heima8.OA.Common
     {
 
         public static Queue<string> ExceptionStringQueue = new Queue<string>();
-
+        public static List<ILogWriter> LogiWriters = new List<ILogWriter>(); 
          
         static LogHelper()
         {
+            //LogiWriters.Add(new SqlServerWriter());
+            //LogiWriters.Add(new TextFileWriter());
+
+
+            LogiWriters.Add(new Log4NetWriter());
+
             ThreadPool.QueueUserWorkItem(o =>
             {
-                lock (ExceptionStringQueue)
-                {
-                    string str = ExceptionStringQueue.Dequeue();
 
+                while (true)
+                {
+                    
+                    lock (ExceptionStringQueue)
+                    {
+                        if (ExceptionStringQueue.Count > 0)
+                        {
+                            string strinfo = ExceptionStringQueue.Dequeue();
+                            foreach (var logWriter in LogiWriters)
+                            {
+                                logWriter.WriteLogInfo(strinfo);
+                            }                            
+                        }
+                        else
+                        {
+                            Thread.Sleep(30);
+                        }
+
+                    }
                 }
+
             });
         }
 

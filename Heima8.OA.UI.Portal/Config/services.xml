@@ -24,4 +24,5 @@
 	  <property name="CurrentDal" ref="UserInfoDal" />
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
+	
 </objects>
