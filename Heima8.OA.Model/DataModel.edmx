@@ -9,6 +9,7 @@
     <EntitySet Name="UserInfo" EntityType="DataModel.Store.UserInfo" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrderInfo" EntityType="DataModel.Store.OrderInfo" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoleInfo" EntityType="DataModel.Store.RoleInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActionInfo" EntityType="DataModel.Store.ActionInfo" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserInfoOrderInfo" Association="DataModel.Store.UserInfoOrderInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />
       <End Role="OrderInfo" EntitySet="OrderInfo" />
@@ -30,6 +31,12 @@
     <Property Name="UserInfoID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RoleInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActionInfo">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -59,6 +66,7 @@
             <End Role="OrderInfo" EntitySet="OrderInfo" />
           </AssociationSet>
           <EntitySet Name="RoleInfo" EntityType="DataModel.RoleInfo" />
+          <EntitySet Name="ActionInfo" EntityType="DataModel.ActionInfo" />
         </EntityContainer>
         <EntityType Name="UserInfo">
           <Key>
@@ -95,6 +103,12 @@
           </Key>
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="ActionInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -121,6 +135,13 @@
     <EntitySetMapping Name="RoleInfo">
       <EntityTypeMapping TypeName="IsTypeOf(DataModel.RoleInfo)">
         <MappingFragment StoreEntitySet="RoleInfo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActionInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(DataModel.ActionInfo)">
+        <MappingFragment StoreEntitySet="ActionInfo">
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

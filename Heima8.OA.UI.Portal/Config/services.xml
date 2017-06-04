@@ -1,19 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
-
-
-
 	
-  <object name="UserInfoService" type="Heima8.OA.BLL.UserInfoService, Heima8.OA.BLL" singleton="false" >
+  <object name="ActionInfoService" type="Heima8.OA.BLL.ActionInfoService, Heima8.OA.BLL" singleton="false" >
 	  <property name="DbSession" ref="DbSession" />
-	  <property name="CurrentDal" ref="UserInfoDal" />
-
+	  <property name="CurrentDal" ref="ActionInfoDal" />
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
+	
   <object name="OrderInfoService" type="Heima8.OA.BLL.OrderInfoService, Heima8.OA.BLL" singleton="false" >
 	  <property name="DbSession" ref="DbSession" />
 	  <property name="CurrentDal" ref="OrderInfoDal" />
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
-  
+	
+  <object name="RoleInfoService" type="Heima8.OA.BLL.RoleInfoService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="RoleInfoDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
+	
+  <object name="UserInfoService" type="Heima8.OA.BLL.UserInfoService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="UserInfoDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
 </objects>

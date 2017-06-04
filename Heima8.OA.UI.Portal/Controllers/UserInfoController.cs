@@ -47,5 +47,12 @@ namespace Heima8.OA.UI.Portal.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Delete(UserInfo userInfo)
+        {
+            UserInfoService.Delete(userInfo);
+            return RedirectToAction("Index");
+        }
+
     }
 }

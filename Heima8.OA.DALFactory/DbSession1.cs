@@ -6,6 +6,11 @@ namespace Heima8.OA.DALFactory
 {
 	public partial class DbSession :IDbSession{
 		
+		public IActionInfoDal ActionInfoDal
+		{
+			get { return StaticDalFactory.GetActionInfoDal(); }
+		}   
+		
 		public IOrderInfoDal OrderInfoDal
 		{
 			get { return StaticDalFactory.GetOrderInfoDal(); }

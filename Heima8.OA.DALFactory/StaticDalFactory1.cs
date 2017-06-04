@@ -7,6 +7,12 @@ namespace Heima8.OA.DALFactory
 	public partial class StaticDalFactory
     {
 		
+	public static IActionInfoDal GetActionInfoDal()
+	{
+		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".ActionInfoDal")
+			as IActionInfoDal;
+	}
+		
 	public static IOrderInfoDal GetOrderInfoDal()
 	{
 		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".OrderInfoDal")

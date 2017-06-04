@@ -5,6 +5,11 @@ namespace Heima8.OA.IDAL
 {
 
 	
+	public partial interface IActionInfoDal : IBaseDal<ActionInfo>
+    {
+       
+    }   
+	
 	public partial interface IOrderInfoDal : IBaseDal<OrderInfo>
     {
        

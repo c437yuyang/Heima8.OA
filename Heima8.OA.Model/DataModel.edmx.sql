@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 06/01/2017 16:33:46
--- Generated from EDMX file: I:\BaiduYunDownload\资料\代码\Heima8.OA\Heima8.OA.Model\DataModel.edmx
+-- Date Created: 06/01/2017 22:45:12
+-- Generated from EDMX file: I:\My Documents\My Desktop\codes\ASP.NET\Heima8.OA\Heima8.OA.Model\DataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -31,6 +31,9 @@ GO
 IF OBJECT_ID(N'[dbo].[OrderInfo]', 'U') IS NOT NULL
     DROP TABLE [dbo].[OrderInfo];
 GO
+IF OBJECT_ID(N'[dbo].[RoleInfo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RoleInfo];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -57,6 +60,12 @@ CREATE TABLE [dbo].[RoleInfo] (
 );
 GO
 
+-- Creating table 'ActionInfo'
+CREATE TABLE [dbo].[ActionInfo] (
+    [ID] int IDENTITY(1,1) NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -76,6 +85,12 @@ GO
 -- Creating primary key on [ID] in table 'RoleInfo'
 ALTER TABLE [dbo].[RoleInfo]
 ADD CONSTRAINT [PK_RoleInfo]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'ActionInfo'
+ALTER TABLE [dbo].[ActionInfo]
+ADD CONSTRAINT [PK_ActionInfo]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
