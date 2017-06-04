@@ -13,12 +13,6 @@ namespace Heima8.OA.UI.Portal.Controllers
 
         public ActionResult Index()
         {
-
-            if (Session["loginUser"] == null)
-            {
-                return RedirectToAction("Index", "UserLogin");
-            }
-
             return View();
         }
 

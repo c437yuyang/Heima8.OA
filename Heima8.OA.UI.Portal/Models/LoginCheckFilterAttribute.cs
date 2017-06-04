@@ -14,10 +14,14 @@ namespace Heima8.OA.UI.Portal.Models
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            if (filterContext.HttpContext.Session["loginUser"] == null)
+            if (IsCheck)
             {
-                filterContext.HttpContext.Response.Redirect("UserLogin/Index");
+                if (filterContext.HttpContext.Session["loginUser"] == null)
+                {
+                    filterContext.HttpContext.Response.Redirect("/UserLogin/Index");
+                }
             }
+
         }
     }
 }

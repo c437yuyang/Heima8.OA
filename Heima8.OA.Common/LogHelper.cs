@@ -48,7 +48,7 @@ namespace Heima8.OA.Common
             });
         }
 
-        public static void writeLog(string execeptionText)
+        public static void WriteLog(string execeptionText)
         {
             lock (ExceptionStringQueue)
             {
