@@ -63,7 +63,14 @@ namespace Heima8.OA.UI.Portal.Controllers
                 return Content("用户名密码错误!");
             }
 
-//            Session["loginUser"] = userInfo; //用memcache+cookie替代session
+            //用memcache+cookie替代session
+//            Session["loginUser"] = userInfo; 
+            
+            string userLoginGuid = Guid.NewGuid().ToString();
+
+            Common.Cache.CacheHelper.AddCache(userLoginGuid,userInfo,DateTime.Now.AddMinutes(20));
+            Response.Cookies["userLoginGuid"].Value = userLoginGuid;
+            
             return Content("ok");
         }
 

@@ -176,6 +176,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Content>
+    <Content Include="Config\common.xml" />
     <Content Include="Content\Images\login\HeadBack.jpg" />
     <Content Include="Content\Images\login\login-btn.gif" />
     <Content Include="Content\Images\login\panel-c.gif" />

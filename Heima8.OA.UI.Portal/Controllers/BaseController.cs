@@ -12,7 +12,7 @@ namespace Heima8.OA.UI.Portal.Controllers
     {
         public BaseController()
         {
-//            this.isCheck = isCheck;
+            //            this.isCheck = isCheck;
             this.isCheck = true;
         }
 
@@ -20,7 +20,7 @@ namespace Heima8.OA.UI.Portal.Controllers
 
         //可以有这么一个属性，用来在继承的子类里面很方便的点出已经登陆的用户的属性来，不用再去拿Session再强转
         //Session缺点:1.吃服务器资源2.性能差，所以一般的优化里面都要首先去掉Session
-        //public UserInfo LoginUser { get; set; }
+        public UserInfo LoginUser { get; set; }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -31,10 +31,24 @@ namespace Heima8.OA.UI.Portal.Controllers
 
             if (isCheck)
             {
-                if (filterContext.HttpContext.Session["loginUser"] == null)
+                if (Request.Cookies["userLoginGuid"] == null)
                 {
                     filterContext.HttpContext.Response.Redirect("/UserLogin/Index");
+                    return;
                 }
+
+                string userGuid = Request.Cookies["userLoginGuid"].Value;
+                UserInfo userInfo = Common.Cache.CacheHelper.GetCache(userGuid) as UserInfo;
+                if (userInfo == null)
+                {
+                    //用户长时间不操作，超时了
+                    filterContext.HttpContext.Response.Redirect("/UserLogin/Index");
+                }
+                LoginUser = userInfo;
+                //刷新session过期时间,滑动窗口机制
+                Common.Cache.CacheHelper.SetCache(userGuid,LoginUser,DateTime.Now.AddMinutes(20));
+
+
             }
         }
     }

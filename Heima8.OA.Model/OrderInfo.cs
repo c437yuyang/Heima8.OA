@@ -12,6 +12,7 @@ namespace Heima8.OA.Model
     using System;
     using System.Collections.Generic;
     
+    [Serializable]
     public partial class OrderInfo
     {
         public int ID { get; set; }

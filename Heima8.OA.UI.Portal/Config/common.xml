@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+	<object name="CacheWriter"
+		type="Heima8.OA.Common.Cache.MemCacheWriter, Heima8.OA.Common" singleton="false" >
+	</object>
+
+	<!--如果使用单机缓存的话，请使用下面这一段进行注入-->
+	<!--<object name="CacheWriter"
+		type="Heima8.OA.Common.Cache.HttpRuntimeCacheWriter, Heima8.OA.Common" singleton="false" >
+	</object>-->
+
+	<object name="CacheHelper"
+		type="Heima8.OA.Common.Cache.CacheHelper, Heima8.OA.Common" singleton="false" >
+		<property name="_CacheWriter" ref="CacheWriter"></property>
+	</object>
+
+
+</objects>
