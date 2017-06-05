@@ -10,6 +10,12 @@ namespace Heima8.OA.UI.Portal.Controllers
     //需要进行登陆校验的类可以继承这个类，不需要的继承了后令isChcek为false即可
     public class BaseController : Controller
     {
+        public BaseController()
+        {
+//            this.isCheck = isCheck;
+            this.isCheck = true;
+        }
+
         public bool isCheck { get; set; }
 
         //可以有这么一个属性，用来在继承的子类里面很方便的点出已经登陆的用户的属性来，不用再去拿Session再强转

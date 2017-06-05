@@ -7,7 +7,7 @@ using Heima8.OA.IBLL;
 
 namespace Heima8.OA.UI.Portal.Controllers
 {
-    public class OrderInfoController : Controller
+    public class OrderInfoController : BaseController
     {
         //
         // GET: /OrderInfo/

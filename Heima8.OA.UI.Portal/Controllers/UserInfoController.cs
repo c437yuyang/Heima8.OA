@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Heima8.OA.BLL;
 using Heima8.OA.IBLL;
 using Heima8.OA.Model;
 
 namespace Heima8.OA.UI.Portal.Controllers
 {
-    public class UserInfoController : Controller
+    public class UserInfoController : BaseController
     {
         //
         // GET: /UserInfo/

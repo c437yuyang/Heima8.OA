@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Heima8.OA.UI.Portal.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         //
         // GET: /Home/

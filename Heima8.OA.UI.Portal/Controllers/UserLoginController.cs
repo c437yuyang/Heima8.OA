@@ -11,10 +11,16 @@ using Heima8.OA.UI.Portal.Models;
 namespace Heima8.OA.UI.Portal.Controllers
 {
     [LoginCheckFilter(IsCheck = false)]
-    public class UserLoginController : Controller
+    public class UserLoginController : BaseController
     {
+        
         //
         // GET: /UserControl/
+        public UserLoginController()
+        {
+            isCheck = false;
+        }
+
         public IUserInfoService UserInfoService { get; set; }
 
         public ActionResult Index()
@@ -57,7 +63,7 @@ namespace Heima8.OA.UI.Portal.Controllers
                 return Content("用户名密码错误!");
             }
 
-            Session["loginUser"] = userInfo;
+//            Session["loginUser"] = userInfo; //用memcache+cookie替代session
             return Content("ok");
         }
 

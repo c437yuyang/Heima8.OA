@@ -13,7 +13,7 @@ namespace Heima8.OA.UI.Portal.Models
             base.OnException(filterContext);
 
             //
-            Common.LogHelper.writeLog(filterContext.Exception.ToString());
+            Common.LogHelper.WriteLog(filterContext.Exception.ToString());
 
         }
     }
