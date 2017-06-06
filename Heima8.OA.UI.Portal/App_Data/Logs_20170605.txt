@@ -85,3 +85,4 @@ System.IO.IOException: Could not connect for 1000 milliseconds
    дк System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
 2017-06-05 18:29:01,780 [21] ERROR Memcached.ClientLibrary.SockIOPool - Removing potentially hung connection from busy pool ... socket in pool for 300006.096ms
 2017-06-05 18:29:20,959 [14] ERROR Memcached.ClientLibrary.SockIOPool - Trying to initialize an already initialized pool
+2017-06-05 22:42:25,777 [5] ERROR Memcached.ClientLibrary.SockIOPool - Trying to initialize an already initialized pool

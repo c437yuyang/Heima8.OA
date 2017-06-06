@@ -29,6 +29,10 @@ namespace Heima8.OA.UI.Portal.Controllers
             //拿到请求的action和controller
             //filterContext.RouteData.Values;
 
+
+            //TODO:方便测试，测试完成后删除return
+            return;
+
             if (isCheck)
             {
                 if (Request.Cookies["userLoginGuid"] == null)

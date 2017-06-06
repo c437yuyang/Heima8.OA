@@ -14,6 +14,9 @@ namespace RedisDemo
             var client = new RedisClient("127.0.0.1", 6379);
 
             //最后一个参数为我们排序的依据
+
+            #region 排序集合
+
             const string setId = "Set1";
             var s = client.AddItemToSortedSet(setId, "百度", 400);
 
@@ -29,7 +32,6 @@ namespace RedisDemo
             {
                 Console.WriteLine(item);
             }
-
             //降序获取最一个值:"人人"
             list = client.GetRangeFromSortedSetDesc(setId, 0, 0);
 
@@ -37,6 +39,12 @@ namespace RedisDemo
             {
                 Console.WriteLine(item);
             }
+            #endregion
+
+
+
+
+            #region 队列和栈
 
             //上面是添加到set，还可以添加到队列和栈
 
@@ -49,12 +57,15 @@ namespace RedisDemo
 
 
             const string StackId = "Stack1";
-            client.PushItemToList(StackId,"b1");
+            client.PushItemToList(StackId, "b1");
             client.PushItemToList(StackId, "b2");
             client.PushItemToList(StackId, "b3");
 
             var item2 = client.PopItemFromList(StackId);
             Console.WriteLine(item2);
+
+            #endregion
+
 
             Console.Read();
         }

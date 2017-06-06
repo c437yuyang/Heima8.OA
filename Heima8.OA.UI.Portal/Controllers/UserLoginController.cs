@@ -13,7 +13,7 @@ namespace Heima8.OA.UI.Portal.Controllers
     [LoginCheckFilter(IsCheck = false)]
     public class UserLoginController : BaseController
     {
-        
+
         //
         // GET: /UserControl/
         public UserLoginController()
@@ -41,12 +41,12 @@ namespace Heima8.OA.UI.Portal.Controllers
 
         public ActionResult ProcessLogin()
         {
-            string sessionCode = (string) Session["ValidateCode"];
+            string sessionCode = (string)Session["ValidateCode"];
             string inputCode = Request["txtValidateCode"];
 
             //校验验证码
             Session["ValidateCode"] = null;
-            if (string.IsNullOrEmpty(sessionCode)||inputCode!=sessionCode)
+            if (string.IsNullOrEmpty(sessionCode) || inputCode != sessionCode)
             {
                 return Content("验证码错误!");
             }
@@ -54,23 +54,23 @@ namespace Heima8.OA.UI.Portal.Controllers
             //校验用户名密码
             string name = Request["LoginCode"];
             string pwd = Request["LoginPwd"];
-         
 
-          var userInfo =   UserInfoService.GetEntities(u => u.UName == name && u.Pwd == pwd && u.DelFlag == (short)DelFlagEnum.Normal)
-                .FirstOrDefault();
+
+            var userInfo = UserInfoService.GetEntities(u => u.UName == name && u.Pwd == pwd && u.DelFlag == (short)DelFlagEnum.Normal)
+                  .FirstOrDefault();
             if (userInfo == null)
             {
                 return Content("用户名密码错误!");
             }
 
             //用memcache+cookie替代session
-//            Session["loginUser"] = userInfo; 
-            
+            //            Session["loginUser"] = userInfo; 
+
             string userLoginGuid = Guid.NewGuid().ToString();
 
-            Common.Cache.CacheHelper.AddCache(userLoginGuid,userInfo,DateTime.Now.AddMinutes(20));
+            Common.Cache.CacheHelper.AddCache(userLoginGuid, userInfo, DateTime.Now.AddMinutes(20));
             Response.Cookies["userLoginGuid"].Value = userLoginGuid;
-            
+
             return Content("ok");
         }
 
