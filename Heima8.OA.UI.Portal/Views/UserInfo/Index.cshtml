@@ -136,17 +136,27 @@
                 },
                 onLoadSuccess: function (data) {
                     $(".editLink").click(function () { //
-                        //                        editEvent($(this).attr("uid"));
+                        editEvent($(this).attr("uid"));
+                        return false;
+                    });
+                    $(".deletLink").click(function () { //
+                        deleteEvent($(this).attr("uid"));
                         return false;
                     });
                 }
             });
         }
 
+        //TODO:实现增删查改操作后停留在当前页，给inittable传一个参数
 
         //-------------------------添加部分开始-----------------------------------------
         //当用户点击添加时候，弹出一个添加的对话框
         function addClickEvent() {
+            //var datagirdview = $("#tt");
+            //for (var key in datagirdview) {
+            //    console.log(key + ":" + datagirdview[key]);
+            //}
+            //alert($("#tt").attr('pageNumber'));
             $("#addDialogDiv").css("display", "block");
             $("#addDialogDiv").dialog({
                 title: "添加用户",
@@ -196,6 +206,8 @@
 
         //修改
         function editEvent(id) {
+            $('#tt').datagrid("clearSelections");
+            $('#tt').datagrid("selectRecord", id);
             //给editFrame  的src属性做一个赋值
             $("#editFrame").attr("src", "/UserInfo/Edit/" + id);
             $("#editDialogDiv").css("display", "block");
@@ -236,27 +248,40 @@
         //-------------------------删除部分开始-----------------------------------------
 
         //删除按钮被点击的时候执行。
-        function deleteEvent() {
+        function deleteEvent(id) {
+
+            if (id) {
+                $('#tt').datagrid("clearSelections");
+                $('#tt').datagrid("selectRecord", id);
+                deleteIDs(id.toString());
+                return false;
+            }
             //第一步拿到  easyui里面的选中的项
             var selectedRows = $('#tt').datagrid("getSelections");
             if (selectedRows.length <= 0) {
                 //error,question,info,warning.
                 $.messager.alert("错误提醒", "请选中删除数据！", "question");
-                return;
+                return false;
             }
+            var ids = "";
+            // 把数据删除
+            for (var key in selectedRows) {
+                ids = ids + selectedRows[key].ID + ",";
+            }
+            //ids:     1,2,       4,5,6,
+            ids = ids.substr(0, ids.length - 1);
+            deleteIDs(ids);
+            return false;
+        }
 
-            $.messager.confirm("删除确认", "确定要删除选中的" + selectedRows.length + "条数据吗?", function(isOK) {
-                if (!isOK) {
+        //此方法传入一个文本值，再post到后台进行删除，例如:"1,2,3" 或者 "1"
+        function deleteIDs(ids) {
+            var length = ids.split(',').length;
+
+            $.messager.confirm("删除确认", "确定要删除选中的" + length + "条数据吗?", function (isOk) {
+                if (!isOk) {
                     return;
                 } else {
-                    var ids = "";
-                    // 把数据删除
-                    for (var key in selectedRows) {
-                        ids = ids + selectedRows[key].ID + ",";
-                    }
-                    //ids:     1,2,       4,5,6,
-                    ids = ids.substr(0, ids.length - 1);
-
                     $.post("/UserInfo/Delete", { ids: ids }, function (data) {
                         if (data == "ok") {
                             //刷新表格
@@ -270,6 +295,7 @@
                 }
             });
         }
+
         //-------------------------删除部分结束-----------------------------------------
 
 
