@@ -9,7 +9,15 @@ namespace Heima8.OA.BLL
     {
 	} 
 	
+    public partial class MenuInfoService:BaseService<MenuInfo>,IMenuInfoService //crud
+    {
+	} 
+	
     public partial class OrderInfoService:BaseService<OrderInfo>,IOrderInfoService //crud
+    {
+	} 
+	
+    public partial class R_UserInfo_ActionInfoService:BaseService<R_UserInfo_ActionInfo>,IR_UserInfo_ActionInfoService //crud
     {
 	} 
 	
@@ -18,6 +26,10 @@ namespace Heima8.OA.BLL
 	} 
 	
     public partial class UserInfoService:BaseService<UserInfo>,IUserInfoService //crud
+    {
+	} 
+	
+    public partial class UserInfoExtService:BaseService<UserInfoExt>,IUserInfoExtService //crud
     {
 	} 
 }

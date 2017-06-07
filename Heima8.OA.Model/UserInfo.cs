@@ -17,15 +17,23 @@ namespace Heima8.OA.Model
     {
         public UserInfo()
         {
+            this.DelFlag = 0;
             this.OrderInfo = new HashSet<OrderInfo>();
+            this.RoleInfo = new HashSet<RoleInfo>();
+            this.R_UserInfo_ActionInfo = new HashSet<R_UserInfo_ActionInfo>();
         }
     
         public int ID { get; set; }
         public string UName { get; set; }
         public string Pwd { get; set; }
-        public string NickName { get; set; }
+        public string ShowName { get; set; }
         public short DelFlag { get; set; }
+        public string Remark { get; set; }
+        public System.DateTime ModfiedOn { get; set; }
+        public System.DateTime SubTime { get; set; }
     
         public virtual ICollection<OrderInfo> OrderInfo { get; set; }
+        public virtual ICollection<RoleInfo> RoleInfo { get; set; }
+        public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
     }
 }

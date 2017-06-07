@@ -15,6 +15,21 @@ namespace Heima8.OA.Model
     [Serializable]
     public partial class RoleInfo
     {
+        public RoleInfo()
+        {
+            this.DelFlag = 0;
+            this.UserInfo = new HashSet<UserInfo>();
+            this.ActionInfo = new HashSet<ActionInfo>();
+        }
+    
         public int ID { get; set; }
+        public string RoleName { get; set; }
+        public System.DateTime SubTime { get; set; }
+        public System.DateTime ModfiedOn { get; set; }
+        public string Remark { get; set; }
+        public short DelFlag { get; set; }
+    
+        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<ActionInfo> ActionInfo { get; set; }
     }
 }

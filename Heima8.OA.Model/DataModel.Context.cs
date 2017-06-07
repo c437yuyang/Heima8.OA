@@ -29,5 +29,8 @@ namespace Heima8.OA.Model
         public DbSet<OrderInfo> OrderInfo { get; set; }
         public DbSet<RoleInfo> RoleInfo { get; set; }
         public DbSet<ActionInfo> ActionInfo { get; set; }
+        public DbSet<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
+        public DbSet<UserInfoExt> UserInfoExt { get; set; }
+        public DbSet<MenuInfo> MenuInfo { get; set; }
     }
 }

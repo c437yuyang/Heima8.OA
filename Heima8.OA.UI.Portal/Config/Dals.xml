@@ -12,8 +12,16 @@
 		type="Heima8.OA.EFDAL.ActionInfoDal, Heima8.OA.EFDAL" singleton="false" >
 	</object>
 	
+	<object name="MenuInfoDal"
+		type="Heima8.OA.EFDAL.MenuInfoDal, Heima8.OA.EFDAL" singleton="false" >
+	</object>
+	
 	<object name="OrderInfoDal"
 		type="Heima8.OA.EFDAL.OrderInfoDal, Heima8.OA.EFDAL" singleton="false" >
+	</object>
+	
+	<object name="R_UserInfo_ActionInfoDal"
+		type="Heima8.OA.EFDAL.R_UserInfo_ActionInfoDal, Heima8.OA.EFDAL" singleton="false" >
 	</object>
 	
 	<object name="RoleInfoDal"
@@ -22,5 +30,9 @@
 	
 	<object name="UserInfoDal"
 		type="Heima8.OA.EFDAL.UserInfoDal, Heima8.OA.EFDAL" singleton="false" >
+	</object>
+	
+	<object name="UserInfoExtDal"
+		type="Heima8.OA.EFDAL.UserInfoExtDal, Heima8.OA.EFDAL" singleton="false" >
 	</object>
 </objects>

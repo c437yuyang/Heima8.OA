@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Heima8.OA.IDAL;
 using Heima8.OA.Model;
 
 namespace Heima8.OA.EFDAL
@@ -14,7 +15,7 @@ namespace Heima8.OA.EFDAL
     /// 职责：封装所有的Dal的公共的crud的方法
     /// 类的职责一定要单一。
     /// </summary>
-    public class BaseDal<T> where T:class ,new ()
+    public class BaseDal<T> where T : class ,new()
     {
         //DataModelContainer db = new DataModelContainer();
 
@@ -85,6 +86,30 @@ namespace Heima8.OA.EFDAL
             //return Db.SaveChanges() > 0;
             return true;
         }
+
+        public bool DeleteByLogical(int id)
+        {
+            var entity = Db.Set<T>().Find(id);
+            if (entity != null)
+            {
+                Db.Entry(entity).Property("DelFlag").CurrentValue = (short)Heima8.OA.Model.Enum.DelFlagEnum.Delete;
+                Db.Entry(entity).Property("DelFlag").IsModified = true;
+                return true;
+            }
+            return false;
+        }
+
+        public bool Delete(int id)
+        {
+            var entity = Db.Set<T>().Find(id);
+            if (entity != null)
+            {
+                Db.Set<T>().Remove(entity);
+                return true;
+            }
+            return false;
+        }
+
         #endregion
     }
 }

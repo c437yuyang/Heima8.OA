@@ -15,6 +15,26 @@ namespace Heima8.OA.Model
     [Serializable]
     public partial class ActionInfo
     {
+        public ActionInfo()
+        {
+            this.DelFlag = 0;
+            this.RoleInfo = new HashSet<RoleInfo>();
+            this.R_UserInfo_ActionInfo = new HashSet<R_UserInfo_ActionInfo>();
+        }
+    
         public int ID { get; set; }
+        public System.DateTime SubTime { get; set; }
+        public System.DateTime ModfiedOn { get; set; }
+        public string Remark { get; set; }
+        public short DelFlag { get; set; }
+        public string Url { get; set; }
+        public string HttpMethd { get; set; }
+        public string ActionName { get; set; }
+        public bool IsMenu { get; set; }
+        public string MenuIcon { get; set; }
+        public int Sort { get; set; }
+    
+        public virtual ICollection<RoleInfo> RoleInfo { get; set; }
+        public virtual ICollection<R_UserInfo_ActionInfo> R_UserInfo_ActionInfo { get; set; }
     }
 }

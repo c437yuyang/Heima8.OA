@@ -9,7 +9,17 @@ namespace Heima8.OA.IBLL
 		
 	}   
 	
+	public partial interface IMenuInfoService:IBaseService<MenuInfo>
+	{
+		
+	}   
+	
 	public partial interface IOrderInfoService:IBaseService<OrderInfo>
+	{
+		
+	}   
+	
+	public partial interface IR_UserInfo_ActionInfoService:IBaseService<R_UserInfo_ActionInfo>
 	{
 		
 	}   
@@ -20,6 +30,11 @@ namespace Heima8.OA.IBLL
 	}   
 	
 	public partial interface IUserInfoService:IBaseService<UserInfo>
+	{
+		
+	}   
+	
+	public partial interface IUserInfoExtService:IBaseService<UserInfoExt>
 	{
 		
 	}   

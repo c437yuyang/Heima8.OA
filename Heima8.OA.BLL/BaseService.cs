@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Heima8.OA.DALFactory;
@@ -21,7 +22,9 @@ namespace Heima8.OA.BLL
             //{
             //    return DbSessionFactory.GetCurrentDbSession();
             //}
-            get; set; }
+            get;
+            set;
+        }
 
         //public BaseService(IDbSession dbSession)//基类的构造函数
         //{
@@ -55,14 +58,14 @@ namespace Heima8.OA.BLL
         public T Add(T entity)
         {
             //return DbSession.OrderInfoDal.Add();
-             CurrentDal.Add(entity);
+            CurrentDal.Add(entity);
             DbSession.SaveChanges();
             return entity;
         }
 
         public bool Update(T entity)
         {
-             CurrentDal.Update(entity);
+            CurrentDal.Update(entity);
             return DbSession.SaveChanges() > 0;
         }
 
@@ -72,6 +75,38 @@ namespace Heima8.OA.BLL
             CurrentDal.Delete(entity);
             return DbSession.SaveChanges() > 0;
         }
+
+
+        public bool Delete(int id)
+        {
+            CurrentDal.Delete(id);
+            return DbSession.SaveChanges() > 0;
+        }
+
+        public bool DeleteByLogical(int id)
+        {
+            CurrentDal.DeleteByLogical(id);
+            return DbSession.SaveChanges() > 0;
+        }
+
+        public int DeleteListByLogical(List<int> ids)
+        {
+            foreach (var id in ids)
+            {
+                CurrentDal.DeleteByLogical(id);
+            }
+            return DbSession.SaveChanges();
+        }
+
+        public int DeleteList(List<int> ids)
+        {
+            foreach (var id in ids)
+            {
+                CurrentDal.Delete(id);
+            }
+            return DbSession.SaveChanges();
+        }
+
 
         #endregion
 

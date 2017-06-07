@@ -10,7 +10,17 @@ namespace Heima8.OA.IDAL
        
     }   
 	
+	public partial interface IMenuInfoDal : IBaseDal<MenuInfo>
+    {
+       
+    }   
+	
 	public partial interface IOrderInfoDal : IBaseDal<OrderInfo>
+    {
+       
+    }   
+	
+	public partial interface IR_UserInfo_ActionInfoDal : IBaseDal<R_UserInfo_ActionInfo>
     {
        
     }   
@@ -21,6 +31,11 @@ namespace Heima8.OA.IDAL
     }   
 	
 	public partial interface IUserInfoDal : IBaseDal<UserInfo>
+    {
+       
+    }   
+	
+	public partial interface IUserInfoExtDal : IBaseDal<UserInfoExt>
     {
        
     }   

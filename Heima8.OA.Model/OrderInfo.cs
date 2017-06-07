@@ -15,9 +15,15 @@ namespace Heima8.OA.Model
     [Serializable]
     public partial class OrderInfo
     {
+        public OrderInfo()
+        {
+            this.DelFlag = 0;
+        }
+    
         public int ID { get; set; }
         public string Content { get; set; }
         public int UserInfoID { get; set; }
+        public short DelFlag { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
     }

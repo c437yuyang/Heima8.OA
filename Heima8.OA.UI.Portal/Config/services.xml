@@ -7,9 +7,21 @@
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
 	
+  <object name="MenuInfoService" type="Heima8.OA.BLL.MenuInfoService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="MenuInfoDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
+	
   <object name="OrderInfoService" type="Heima8.OA.BLL.OrderInfoService, Heima8.OA.BLL" singleton="false" >
 	  <property name="DbSession" ref="DbSession" />
 	  <property name="CurrentDal" ref="OrderInfoDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
+	
+  <object name="R_UserInfo_ActionInfoService" type="Heima8.OA.BLL.R_UserInfo_ActionInfoService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="R_UserInfo_ActionInfoDal" />
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
 	
@@ -25,4 +37,9 @@
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
 	
+  <object name="UserInfoExtService" type="Heima8.OA.BLL.UserInfoExtService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="UserInfoExtDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
 </objects>
