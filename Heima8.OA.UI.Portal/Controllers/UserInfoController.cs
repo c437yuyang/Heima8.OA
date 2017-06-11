@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Heima8.OA.IBLL;
 using Heima8.OA.Model;
 using Heima8.OA.Model.Enum;
+using Heima8.OA.Model.Param;
 
 namespace Heima8.OA.UI.Portal.Controllers
 {
@@ -26,22 +27,52 @@ namespace Heima8.OA.UI.Portal.Controllers
         {
             int pageSize = int.Parse(Request["rows"]);
             int pageIndex = int.Parse(Request["page"]);
-            int total = 0;
-            var pageData = UserInfoService.GetPageEntities(pageSize, pageIndex,out total, u => u.DelFlag == (short)DelFlagEnum.Normal,
-                u => u.ID, true).Select(u => 
-                    new
-                    {
-                        //id=u.ID,
-                        u.ID,
-                        u.UName,
-                        u.Remark,
-                        u.ShowName,
-                        u.SubTime,
-                        u.ModfiedOn,
-                        u.Pwd
-                    }).ToList();
 
-            var data = new {total = total, rows = pageData};
+            //过滤的用户名   过滤备注schName   schRemark
+            string schName = Request["schName"];
+            string schRemark = Request["schRemark"];
+            int total = 0;
+
+            var queryParam = new UserQueryParam()
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Total = 0,
+                SchName = schName,
+                SchRemark = schRemark
+            };
+
+            var pageData = UserInfoService.GetEntitiesByParam(queryParam);
+
+            var temp = pageData.Select(u => new
+            {
+                u.ID,
+                u.UName,
+                u.ShowName,
+                u.SubTime,
+                u.ModfiedOn,
+                u.Pwd
+            }).ToList();
+
+
+
+            #region 直接查询分页数据
+            //var pageData = UserInfoService.GetPageEntities(pageSize, pageIndex,out total, u => u.DelFlag == (short)DelFlagEnum.Normal,
+            //    u => u.ID, true).Select(u => 
+            //        new
+            //        {
+            //            //id=u.ID,
+            //            u.ID,
+            //            u.UName,
+            //            u.Remark,
+            //            u.ShowName,
+            //            u.SubTime,
+            //            u.ModfiedOn,
+            //            u.Pwd
+            //        }).ToList(); 
+            #endregion
+
+            var data = new {total = total, rows = temp};
        
             return Json(data,JsonRequestBehavior.AllowGet);
         }

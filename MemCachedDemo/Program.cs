@@ -12,7 +12,8 @@ namespace MemCachedDemo
         static void Main(string[] args)
         {
             //分布Memcachedf服务IP 端口
-            string[] servers = { "192.168.135.1:11211", "192.168.135.100:11211" };
+            //string[] servers = { "192.168.135.1:11211", "192.168.135.100:11211" };
+            string[] servers = { "127.0.0.1:11211", "192.168.135.100:11211" };
 
             //初始化池
             SockIOPool pool = SockIOPool.GetInstance();

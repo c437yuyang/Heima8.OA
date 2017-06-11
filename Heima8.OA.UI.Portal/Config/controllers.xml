@@ -13,4 +13,8 @@
 		<property name="UserInfoService" ref="UserInfoService" />
 	</object>
 
+  <object type="Heima8.OA.UI.Portal.Controllers.ActionInfoController, Heima8.OA.UI.Portal" singleton="false" >
+    <property name="ActionInfoService" ref="ActionInfoService" />
+  </object>
+
 </objects>
