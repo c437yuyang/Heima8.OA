@@ -7,6 +7,7 @@
 		singleton="false" >
 	</object>
 
+	
 	<object name="ActionInfoDal"
 		type="Heima8.OA.EFDAL.ActionInfoDal, Heima8.OA.EFDAL" singleton="false" >
 	</object>

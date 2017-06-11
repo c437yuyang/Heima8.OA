@@ -17,4 +17,8 @@
     <property name="ActionInfoService" ref="ActionInfoService" />
   </object>
 
+  <object type="Heima8.OA.UI.Portal.Controllers.RoleInfoController, Heima8.OA.UI.Portal" singleton="false" >
+    <property name="RoleInfoService" ref="RoleInfoService" />
+  </object>
+
 </objects>
