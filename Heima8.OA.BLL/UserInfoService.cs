@@ -17,7 +17,7 @@ namespace Heima8.OA.BLL
 
     //变化点：1、跨数据库。有mysql，slqserver2、数据库访问驱动层驱动变化。
 
-    public partial class UserInfoService:BaseService<UserInfo>,IUserInfoService //crud
+    public partial class UserInfoService : BaseService<UserInfo>, IUserInfoService //crud
     {
         #region old2
         //让一个菜鸟到另一个一般开发人员。
@@ -93,5 +93,23 @@ namespace Heima8.OA.BLL
         }
         #endregion
 
+        public bool SetRole(int uid, List<int> rolesList)
+        {
+            UserInfo user = DbSession.UserInfoDal.GetEntities(u => u.ID == uid).FirstOrDefault();
+
+            List<RoleInfo> allRoles = DbSession.RoleInfoDal.GetEntities(r => rolesList.Contains(r.ID)).ToList();
+
+            user.RoleInfo.Clear(); //清除以前的
+
+            foreach (var role in allRoles)
+            {
+                user.RoleInfo.Add(role);
+            }
+            return DbSession.SaveChanges() >= 0;
+
+            //这里如果之前选中的一些，现在选中和之前一样的，那么就会出现savechanges为0的情况
+            //所以直接返回true或者>=0了
+
+        }
     }
 }

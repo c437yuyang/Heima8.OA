@@ -22,10 +22,8 @@
             initTable();
             $("#addDialogDiv").css("display", "none");
             $("#editDialogDiv").css("display", "none");
-            //            $("#setRoleDialogDiv").css("display", "none");
-            //            $("#setActionDialogDiv").css("display", "none");
-            //
-                        bindSearchBtnClick();
+
+            bindSearchBtnClick();
 
         });
 
@@ -111,22 +109,6 @@
                                 return;
                             }
                             editEvent(selectedRows[0].ID);
-                        }
-                    }, {
-                        id: 'btnSetRole',
-                        text: '设置角色',
-                        iconCls: 'icon-redo',
-                        handler: function () {
-                            //判断是否选中一个角色进行角色设置。弹出一个设置角色的对话框出来。
-                            //                            setRole();
-                        }
-                    }, {
-                        id: 'btnSetAction',
-                        text: '设置特殊权限',
-                        iconCls: 'icon-redo',
-                        handler: function () {
-                            //判断是否选中一个角色进行角色设置。弹出一个设置角色的对话框出来。
-                            //                            setAction();
                         }
                     }
                 ],

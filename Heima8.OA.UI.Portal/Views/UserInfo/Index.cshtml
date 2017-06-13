@@ -22,10 +22,10 @@
             initTable();
             $("#addDialogDiv").css("display", "none");
             $("#editDialogDiv").css("display", "none");
-            //            $("#setRoleDialogDiv").css("display", "none");
-            //            $("#setActionDialogDiv").css("display", "none");
-            //
-                        bindSearchBtnClick();
+            $("#setRoleDialogDiv").css("display", "none");
+            $("#setActionDialogDiv").css("display", "none");
+
+            bindSearchBtnClick();
 
         });
 
@@ -42,8 +42,8 @@
             $('#tt').datagrid({
                 url: '/UserInfo/GetAllUserInfos', //rows:一页有多少条，page：请求当前页
                 title: '用户信息列表',
-                width: 700,
-                height: 400,
+                width: 1000,
+                height: 800,
                 fitColumns: true,
                 idField: 'ID',
                 loadMsg: '正在加载用户的信息...',
@@ -119,7 +119,7 @@
                         iconCls: 'icon-redo',
                         handler: function () {
                             //判断是否选中一个用户进行角色设置。弹出一个设置角色的对话框出来。
-                            //                            setRole();
+                            setRole();
                         }
                     }, {
                         id: 'btnSetAction',
@@ -127,7 +127,7 @@
                         iconCls: 'icon-redo',
                         handler: function () {
                             //判断是否选中一个用户进行角色设置。弹出一个设置角色的对话框出来。
-                            //                            setAction();
+                            setAction();
                         }
                     }
                 ],
@@ -146,6 +146,102 @@
                 }
             });
         }
+
+
+        //-------------------------设置用户特殊权限部分开始-----------------------------------------
+        //设置用户权限:
+        function setAction() {
+            //校验你是否只选中一个 用户
+            var selectedRows = $('#tt').datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                //error,question,info,warning.
+                $.messager.alert("错误提醒", "请选中1个用户进行设置！", "question");
+                return;
+            }
+            //设置Iframe标签，传入id
+            $("#setActionFrame").attr("src", "/UserInfo/SetAction/" + selectedRows[0].ID);
+
+            //弹出设置角色对话框
+            $("#setActionDialogDiv").css("display", "block");
+            $("#setActionDialogDiv").dialog({
+                title: "设置用户特殊权限",
+                modal: true,
+                width: 500,
+                height: 400,
+                collapsible: true,
+                minimizable: true,
+                maximizable: true,
+                resizable: true
+            });
+
+        }
+
+        //设置用户角色成功后关闭对话框
+        function afterSetRole() {
+            $("#setActionDialogDiv").dialog("close");
+        }
+
+        function subSetRoleForm() {
+            $("#setActionFrame")[0].contentWindow.submitForm();
+        }
+
+
+        //-------------------------设置用户特殊权限部分结束-----------------------------------------
+
+
+
+        //-------------------------设置用户角色部分开始-----------------------------------------
+        //设置用户角色:
+        function setRole() {
+            //校验你是否只选中一个 用户
+            var selectedRows = $('#tt').datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                //error,question,info,warning.
+                $.messager.alert("错误提醒", "请选中1个用户进行设置！", "question");
+                return;
+            }
+            //设置Iframe标签，传入id
+            $("#setRoleFrame").attr("src", "/UserInfo/SetRole/" + selectedRows[0].ID);
+
+            //弹出设置角色对话框
+            $("#setRoleDialogDiv").css("display", "block");
+            $("#setRoleDialogDiv").dialog({
+                title: "设置用户角色",
+                modal: true,
+                width: 400,
+                height: 400,
+                collapsible: true,
+                minimizable: true,
+                maximizable: true,
+                resizable: true,
+                buttons: [{
+                    id: 'btnOk',
+                    text: '设置',
+                    iconCls: 'icon-ok',
+                    handler: subSetRoleForm
+                }, {
+                    id: 'btnCancel',
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function () {
+                        $("#setRoleDialogDiv").dialog("close");
+                    }
+                }]
+            });
+
+        }
+
+        //设置用户角色成功后关闭对话框
+        function afterSetRole() {
+            $("#setRoleDialogDiv").dialog("close");
+        }
+
+        function subSetRoleForm() {
+            $("#setRoleFrame")[0].contentWindow.submitForm();
+        }
+
+
+        //-------------------------设置用户角色部分结束-----------------------------------------
 
         //TODO:实现增删查改操作后停留在当前页，给inittable传一个参数
 
@@ -206,6 +302,7 @@
 
         //修改
         function editEvent(id) {
+            //加上这两句更加人性化操作，即使没选中点击修改也会选中点击的那一条记录
             $('#tt').datagrid("clearSelections");
             $('#tt').datagrid("selectRecord", id);
             //给editFrame  的src属性做一个赋值
@@ -350,6 +447,20 @@
             <iframe id="editFrame" src="javascript:void(0)" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
         </div>
         <!----------------弹出来的修改的 对话框- 结束------------>
+
+        <!----------------弹出来的设置角色的 对话框- 开始------------>
+        <div id="setRoleDialogDiv">
+            <iframe id="setRoleFrame" src="javascript:void(0)" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
+        </div>
+        <!----------------弹出来的设置角色的 对话框- 结束------------>
+
+
+        <!----------------弹出来的设置用户特殊权限的 对话框- 开始------------>
+        <div id="setActionDialogDiv">
+            <iframe id="setActionFrame" src="javascript:void(0)" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
+        </div>
+        <!----------------弹出来的设置用户特殊权限的 对话框- 结束------------>
+
 
 
     </div>

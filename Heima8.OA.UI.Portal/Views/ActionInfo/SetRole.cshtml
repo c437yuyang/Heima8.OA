@@ -1,0 +1,76 @@
+﻿@model Heima8.OA.Model.ActionInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SetRole</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+
+    <script type="text/javascript">
+        function afterSetRole(data) {
+
+            if (data == "ok")
+
+                window.parent.window.afterSetRole();
+        }
+
+        function submitForm() {
+            $("form").submit();
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <h2>当前给权限:<h style="color:red">@Model.ActionName</h>&nbsp;设置角色
+        </h2>
+        <hr />
+
+        @{
+            
+            List<int> existRoles = ViewBag.ExitsRoles;
+            List<Heima8.OA.Model.RoleInfo> allRoles = ViewBag.AllRoles;
+            using (Ajax.BeginForm("ProcessSetRole", "ActionInfo", new AjaxOptions() { OnSuccess = "afterSetRole" }))
+            {
+            <input type="hidden" id="hidUId" value="@Model.ID" name="hidUId"/>
+                int i = 0;
+                foreach (var role in allRoles)
+                {
+                    string str = "ckb_" + role.ID.ToString();
+
+                    if (existRoles.Contains(role.ID))
+                    {
+            <input type ="checkbox" checked="checked" value="@role.RoleName" name="@str" id="@str"/> <!---->
+                    }
+                    else
+                    {
+            <input type ="checkbox" value="@role.RoleName" name="@str" id="@str"/> <!---->
+                    }
+                    
+            
+            <label for="@str">@role.RoleName</label>    
+                    i++;
+                    if (i % 2 == 0)
+                    {
+            <hr />
+                    }
+                }
+                
+            <input type="submit" value="提交" />
+                
+            }
+
+            
+        }
+
+    </div>
+</body>
+</html>

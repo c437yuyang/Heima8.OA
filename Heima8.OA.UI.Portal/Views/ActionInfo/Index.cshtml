@@ -23,9 +23,7 @@
             initTable();
             $("#addDialogDiv").css("display", "none");
             $("#editDialogDiv").css("display", "none");
-            //            $("#setRoleDialogDiv").css("display", "none");
-            //            $("#setActionDialogDiv").css("display", "none");
-            //
+
             bindSearchBtnClick();
             bindCkbIsMenuClick();
             bindUploadBtnClick(); //绑定上传图片按钮的点击事件
@@ -158,23 +156,17 @@
                         }
                         editEvent(selectedRows[0].ID);
                     }
-                }, {
+                },
+                {
                     id: 'btnSetRole',
                     text: '设置角色',
                     iconCls: 'icon-redo',
                     handler: function () {
-                        //判断是否选中一个权限进行角色设置。弹出一个设置角色的对话框出来。
-                        //                            setRole();
-                    }
-                }, {
-                    id: 'btnSetAction',
-                    text: '设置特殊权限',
-                    iconCls: 'icon-redo',
-                    handler: function () {
-                        //判断是否选中一个权限进行角色设置。弹出一个设置角色的对话框出来。
-                        //                            setAction();
+                        //判断是否选中一个用户进行角色设置。弹出一个设置角色的对话框出来。
+                        setRole();
                     }
                 }
+
             ],
             onHeaderContextMenu: function (e, field) {
 
@@ -191,6 +183,64 @@
             }
         });
         }
+
+
+
+        //-------------------------设置用户角色部分开始-----------------------------------------
+        //设置用户角色:
+        function setRole() {
+            //校验你是否只选中一个 用户
+            var selectedRows = $('#tt').datagrid("getSelections");
+            if (selectedRows.length != 1) {
+                //error,question,info,warning.
+                $.messager.alert("错误提醒", "请选中1个用户进行设置！", "question");
+                return;
+            }
+            //设置Iframe标签，传入id
+            $("#setRoleFrame").attr("src", "/ActionInfo/SetRole/" + selectedRows[0].ID);
+
+            //弹出设置角色对话框
+            $("#setRoleDialogDiv").css("display", "block");
+            $("#setRoleDialogDiv").dialog({
+                title: "设置权限的角色",
+                modal: true,
+                width: 400,
+                height: 400,
+                collapsible: true,
+                minimizable: true,
+                maximizable: true,
+                resizable: true,
+                buttons: [{
+                    id: 'btnOk',
+                    text: '设置',
+                    iconCls: 'icon-ok',
+                    handler: subSetRoleForm
+                }, {
+                    id: 'btnCancel',
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function () {
+                        $("#setRoleDialogDiv").dialog("close");
+                    }
+                }]
+            });
+
+        }
+
+        //设置用户角色成功后关闭对话框
+        function afterSetRole() {
+            $("#setRoleDialogDiv").dialog("close");
+        }
+
+        function subSetRoleForm() {
+            $("#setRoleFrame")[0].contentWindow.submitForm();
+        }
+
+
+        //-------------------------设置用户角色部分结束-----------------------------------------
+
+
+
 
         //TODO:实现增删查改操作后停留在当前页，给inittable传一个参数
 
@@ -429,6 +479,11 @@
         </div>
         <!----------------弹出来的修改的 对话框- 结束------------>
 
+        <!----------------弹出来的设置角色的 对话框- 开始------------>
+        <div id="setRoleDialogDiv">
+            <iframe id="setRoleFrame" src="javascript:void(0)" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
+        </div>
+        <!----------------弹出来的设置角色的 对话框- 结束------------>
 
     </div>
 </body>

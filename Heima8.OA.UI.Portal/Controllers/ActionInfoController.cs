@@ -16,6 +16,7 @@ namespace Heima8.OA.UI.Portal.Controllers
         short delFlag = (short)Model.Enum.DelFlagEnum.Normal;
 
         public IActionInfoService ActionInfoService { get; set; }
+        public IRoleInfoService RoleInfoService { get; set; }
 
         public ActionResult Index()
         {
@@ -113,6 +114,52 @@ namespace Heima8.OA.UI.Portal.Controllers
         }
 
         #endregion
+
+
+        #region 设置权限对应角色
+        public ActionResult SetRole(int id)
+        {
+            int userid = id;
+            ActionInfo model = ActionInfoService.GetEntities(u => u.ID == id).FirstOrDefault();
+            //把所有的角色发送 到前台
+            ViewBag.AllRoles = RoleInfoService.GetEntities(u => u.DelFlag == delFlag).ToList();
+
+            //权限已经关联的角色发送到前台。
+            ViewBag.ExitsRoles = (from r in model.RoleInfo
+                                  select r.ID).ToList();
+
+            return View(model);
+        }
+
+
+        public ActionResult ProcessSetRole(int hidUId) //传入的值是string或者int都可以，会自动进行转换
+        {
+            //1.拿到用户的ID
+            //2.所有勾上的ckb的值
+            int actionId = int.Parse(Request["hidUId"]);
+            List<int> rolesList = new List<int>();
+            foreach (var key in Request.Form.AllKeys) //这里的key就是表单里面的name属性的值
+            {
+                if (key.StartsWith("ckb_"))
+                {
+                    rolesList.Add(int.Parse(key.Replace("ckb_", "")));
+                }
+            }
+
+
+            //3.为相应的用户设置相应的角色
+            if (ActionInfoService.SetRole(actionId, rolesList))
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("fail");
+            }
+        }
+
+        #endregion
+
 
 
     }

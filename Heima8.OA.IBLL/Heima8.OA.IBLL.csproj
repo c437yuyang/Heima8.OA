@@ -48,6 +48,7 @@
     <Compile Include="IOrderInfoService.cs" />
     <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IActionInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Heima8.OA.Model\Heima8.OA.Model.csproj">

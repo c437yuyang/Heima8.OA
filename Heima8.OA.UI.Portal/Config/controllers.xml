@@ -3,6 +3,9 @@
 
   <object type="Heima8.OA.UI.Portal.Controllers.UserInfoController, Heima8.OA.UI.Portal" singleton="false" >
     <property name="UserInfoService" ref="UserInfoService" />
+    <property name="RoleInfoService" ref="RoleInfoService" />
+    <property name="ActionInfoService" ref="ActionInfoService" />
+    <property name="R_UserInfo_ActionInfoService" ref="R_UserInfo_ActionInfoService" />
   </object>
 
   <object type="Heima8.OA.UI.Portal.Controllers.OrderInfoController, Heima8.OA.UI.Portal" singleton="false" >
@@ -15,10 +18,12 @@
 
   <object type="Heima8.OA.UI.Portal.Controllers.ActionInfoController, Heima8.OA.UI.Portal" singleton="false" >
     <property name="ActionInfoService" ref="ActionInfoService" />
+    <property name="RoleInfoService" ref="RoleInfoService" />
   </object>
 
   <object type="Heima8.OA.UI.Portal.Controllers.RoleInfoController, Heima8.OA.UI.Portal" singleton="false" >
     <property name="RoleInfoService" ref="RoleInfoService" />
+    
   </object>
 
 </objects>

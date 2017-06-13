@@ -15,10 +15,14 @@ namespace Heima8.OA.UI.Portal.Controllers
         // GET: /UserInfo/
         //IUserInfoService UserInfoService = new UserInfoService();//Spring.Net
         public IUserInfoService UserInfoService { get; set; }
+        public IRoleInfoService RoleInfoService { get; set; }
+        public IActionInfoService ActionInfoService { get; set; }
+        public IR_UserInfo_ActionInfoService R_UserInfo_ActionInfoService { get; set; }
 
+        private readonly short delFlag = (short)Heima8.OA.Model.Enum.DelFlagEnum.Normal;
         public ActionResult Index()
         {
-            
+
             return View();
         }
 
@@ -72,9 +76,9 @@ namespace Heima8.OA.UI.Portal.Controllers
             //        }).ToList(); 
             #endregion
 
-            var data = new {total = total, rows = temp};
-       
-            return Json(data,JsonRequestBehavior.AllowGet);
+            var data = new { total = total, rows = temp };
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Create()
         {
@@ -161,6 +165,103 @@ namespace Heima8.OA.UI.Portal.Controllers
         }
         #endregion
 
+
+
+        #region 设置用户角色
+        public ActionResult SetRole(int id)
+        {
+            int userid = id;
+            UserInfo model = UserInfoService.GetEntities(u => u.ID == id).FirstOrDefault();
+            //把所有的角色发送 到前台
+            ViewBag.AllRoles = RoleInfoService.GetEntities(u => u.DelFlag == delFlag).ToList();
+
+            //用户已经关联的角色发送到前台。
+            ViewBag.ExitsRoles = (from r in model.RoleInfo
+                                  select r.ID).ToList();
+
+            return View(model);
+        }
+
+        public ActionResult ProcessSetRole(int hidUId) //传入的值是string或者int都可以，会自动进行转换
+        {
+            //1.拿到用户的ID
+            //2.所有勾上的ckb的值
+            int userId = int.Parse(Request["hidUId"]);
+            List<int> rolesList = new List<int>();
+            foreach (var key in Request.Form.AllKeys) //这里的key就是表单里面的name属性的值
+            {
+                if (key.StartsWith("ckb_"))
+                {
+                    rolesList.Add(int.Parse(key.Replace("ckb_", "")));
+                }
+            }
+
+
+            //3.为相应的用户设置相应的角色
+            if (UserInfoService.SetRole(userId, rolesList))
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("fail");
+            }
+        }
+
+        #endregion
+
+
+        #region 设置用户特殊权限
+        public ActionResult SetAction(int id)
+        {
+            int userid = id;
+            UserInfo model = UserInfoService.GetEntities(u => u.ID == id).FirstOrDefault();
+            ViewBag.User = model;
+            ViewData.Model = ActionInfoService.GetEntities(u => u.DelFlag == delFlag).ToList();
+
+            return View();
+        }
+
+        //做一个删除  特殊权限。
+        public ActionResult DeleteUserAction(int UId, int ActionId)
+        {
+
+            var rUserAction = R_UserInfo_ActionInfoService.GetEntities(r => r.ActionInfoID == ActionId && r.UserInfoID == UId)
+                                        .FirstOrDefault();
+            if (rUserAction != null)
+            {
+                //rUserAction.DelFlag = (short) Heima8.OA.Model.Enum.DelFlagEnum.Deleted;
+                R_UserInfo_ActionInfoService.DeleteListByLogical(new List<int>() { rUserAction.ID });
+            }
+            return Content("ok");
+        }
+
+        //设置当前用户的特殊权限
+        public ActionResult SetUserAction(int UId, int ActionId, int Value)
+        {
+            //{UId:uId,ActionId:actionId,Value:value}
+            var rUserAction = R_UserInfo_ActionInfoService.GetEntities(r => r.ActionInfoID == ActionId && 
+                                                                        r.UserInfoID == UId && r.DelFlag == delFlag)
+                                                                        .FirstOrDefault();
+            if (rUserAction != null)
+            {
+                rUserAction.HasPermission = Value == 1 ? true : false;
+                R_UserInfo_ActionInfoService.Update(rUserAction);
+            }
+            else
+            {
+                R_UserInfo_ActionInfo rUserInfoActionInfo = new R_UserInfo_ActionInfo();
+                rUserInfoActionInfo.ActionInfoID = ActionId;
+                rUserInfoActionInfo.UserInfoID = UId;
+                rUserInfoActionInfo.HasPermission = Value == 1 ? true : false;
+                rUserInfoActionInfo.DelFlag = delFlag;
+                R_UserInfo_ActionInfoService.Add(rUserInfoActionInfo);
+            }
+
+            return Content("ok");
+        }
+
+        #endregion
 
 
     }
