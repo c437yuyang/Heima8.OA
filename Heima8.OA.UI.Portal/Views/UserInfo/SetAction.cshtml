@@ -18,6 +18,9 @@
 
         $(function () {
 
+
+
+
             $(".btnDel").click(function () {
                 if ($(this).siblings(":checked").length > 0) {
                     //后台删除数据。
@@ -51,6 +54,21 @@
     <div>
         @{
             UserInfo user = ViewBag.User;
+            List<R_UserInfo_ActionInfo> existedActionInfos = ViewBag.ExistedActions;
+            List<int> existAllowActionsInts = new List<int>();
+            List<int> existDenyActionsInts = new List<int>();
+
+            foreach (R_UserInfo_ActionInfo actionInfo in existedActionInfos)
+            {
+                if (actionInfo.HasPermission)
+                {
+                    existAllowActionsInts.Add(actionInfo.ActionInfoID);
+                }
+                else
+                {
+                    existDenyActionsInts.Add(actionInfo.ActionInfoID);
+                }
+            }
         }
         <h2>当前给用户:<h style="color: red">@ViewBag.User.UName</h>&nbsp;设置角色</h2>
         @{
@@ -65,17 +83,39 @@
                 @foreach (var actionInfo in Model)
                 {
                     string strId = "rd_" + actionInfo.ID;
-                    
+                    string strChecked = "";
                     <tr>
                         <td>@actionInfo.ID</td>
                         <td>@actionInfo.ActionName</td>
                         <td>@actionInfo.Url</td>
                         <td>@actionInfo.HttpMethd</td>
-                        <td>允许<input uId="@user.ID" actionId="@actionInfo.ID" type="radio" name="@strId" value="1"/>
-                            &nbsp;
+
+                        @if (existAllowActionsInts.Contains(actionInfo.ID))
+                        {
+                            <td>允许<input uId="@user.ID" actionId="@actionInfo.ID" type="radio" name="@strId" value="1" checked="checked"/>
+                                &nbsp;
                             拒绝<input uId="@user.ID" actionId="@actionInfo.ID" type="radio" name="@strId" value="0"/>
-                            <input type="button" uId="@user.ID" actionId="@actionInfo.ID" class="btnDel" value="删除" id="btnDelet"/>
-                        </td>
+                                <input type="button" uId="@user.ID" actionId="@actionInfo.ID" class="btnDel" value="删除" id="btnDelet"/>
+                            </td>
+                        }
+                        else if (existDenyActionsInts.Contains(actionInfo.ID))
+                        {
+                            <td>允许<input uId="@user.ID" actionId="@actionInfo.ID" type="radio" name="@strId" value="1"/>
+                                &nbsp;
+                                拒绝<input uId="@user.ID" actionId="@actionInfo.ID" type="radio" name="@strId" value="0" checked="checked"/>
+                                <input type="button" uId="@user.ID" actionId="@actionInfo.ID" class="btnDel" value="删除" id="btnDelet"/>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>允许<input uId="@user.ID" actionId="@actionInfo.ID" type="radio" name="@strId" value="1" checked=""/>
+                                &nbsp;
+                            拒绝<input uId="@user.ID" actionId="@actionInfo.ID" type="radio" name="@strId" value="0"/>
+                                <input type="button" uId="@user.ID" actionId="@actionInfo.ID" class="btnDel" value="删除" id="btnDelet"/>
+                            </td>
+                        }
+
+
                     </tr>
                 }
             </table>

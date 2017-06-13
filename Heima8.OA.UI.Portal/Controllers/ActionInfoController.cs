@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Heima8.OA.UI.Portal.Controllers
 {
-    public class ActionInfoController : Controller
+    public class ActionInfoController : BaseController
     {
         //
         // GET: /ActionInfo/

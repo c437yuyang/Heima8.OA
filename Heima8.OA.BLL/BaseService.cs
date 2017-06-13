@@ -58,6 +58,13 @@ namespace Heima8.OA.BLL
         public T Add(T entity)
         {
             //return DbSession.OrderInfoDal.Add();
+
+            //TODO:添加前要进行校验是否有相同的用户
+            //这里的做法只能是每个类提供一个校验的方法，这边调用
+            //1.反射检查是否存在一个CheckExist的方法，如果存在就检查，如果不存在就不检查了
+
+            
+
             CurrentDal.Add(entity);
             DbSession.SaveChanges();
             return entity;

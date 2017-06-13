@@ -1,4 +1,6 @@
-﻿@{
+﻿@using System.Text
+@using Heima8.OA.Model
+@{
     Layout = null;
 }
 
@@ -146,20 +148,23 @@
         }
         return win;
     }
+
+    @{
+        List<ActionInfo> menus = ViewBag.AllMenu;
+        StringBuilder sb = new StringBuilder();
+        foreach (var menu in menus)
+        {
+            sb.Append("{");
+            sb.AppendFormat(" icon: '{0}', title: '{1}', url: '{2}' ", menu.MenuIcon, menu.ActionName, menu.Url);
+            sb.Append("},");
+        }
+        string str = sb.ToString().TrimEnd(',');
+        
+    }
+
     //所有图标的数据
     var links = [
-            { icon: '/Content/Images/Home/3DSMAX.png', title: '用户列表', url: '/userinfo/index' },
-            { icon: '/Content/Images/Home/3DSMAX.png', title: '权限管理', url: '/actionInfo/index' },
-            { icon: '/Content/Images/Home/3DSMAX.png', title: '角色管理', url: '/roleInfo/index' },
-            { icon: '/Content/Images/Home/Program Files Folder.png', title: '固定列', url: '../grid/frozen/frozengrid.htm' },
-            { icon: '/Content/Images/Home/Program Files Folder.png', title: '可拖动', url: '../base/drag.htm' },
-            { icon: '/Content/Images/Home/Alien Folder.png', title: '树', url: '../tree/draggable.htm' },
-            { icon: '/Content/Images/Home/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
-            { icon: '/Content/Images/Home/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
-            { icon: '/Content/Images/Home/Alien Folder.png', title: 'layout', url: '../layout/layoutFullHeight.htm' },
-             { icon: '/Content/Images/Home/Alien Folder.png', title: 'menu', url: '../menu/menubar.htm' },
-             { icon: '/Content/Images/Home/Xp-G5 006.png', title: 'tab', url: '../tab/tabHtml.htm' },
-             { icon: '/Content/Images/Home/3DSMAX.png', title: '分组', url: '../grid/groupable/checkbox.htm' }
+        @Html.Raw(str)
     ];
 
     //窗口发生变化的时候图标自适应

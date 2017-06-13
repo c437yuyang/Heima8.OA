@@ -18,7 +18,8 @@ namespace Heima8.OA.UI.Portal.Controllers
         // GET: /UserControl/
         public UserLoginController()
         {
-            isCheck = false;
+            IsCheckLogin = false;
+            IsCheckAction = false;
         }
 
         public IUserInfoService UserInfoService { get; set; }

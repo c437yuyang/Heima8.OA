@@ -55,7 +55,8 @@ namespace Heima8.OA.UI.Portal.Controllers
                 u.ShowName,
                 u.SubTime,
                 u.ModfiedOn,
-                u.Pwd
+                u.Pwd,
+                u.Remark
             }).ToList();
 
 
@@ -217,6 +218,13 @@ namespace Heima8.OA.UI.Portal.Controllers
             int userid = id;
             UserInfo model = UserInfoService.GetEntities(u => u.ID == id).FirstOrDefault();
             ViewBag.User = model;
+
+            //传回已经存在的权限信息
+            var existedActions =
+                R_UserInfo_ActionInfoService.GetEntities(u => u.UserInfoID == userid && u.DelFlag == (short)DelFlagEnum.Normal)
+                    .ToList();
+
+            ViewBag.ExistedActions = existedActions;
             ViewData.Model = ActionInfoService.GetEntities(u => u.DelFlag == delFlag).ToList();
 
             return View();

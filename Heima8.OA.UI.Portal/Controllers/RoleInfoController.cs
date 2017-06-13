@@ -8,7 +8,7 @@ using Heima8.OA.Model;
 
 namespace Heima8.OA.UI.Portal.Controllers
 {
-    public class RoleInfoController : Controller
+    public class RoleInfoController : BaseController
     {
         //
         // GET: /RoleInfo/

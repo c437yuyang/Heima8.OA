@@ -23,7 +23,11 @@
 
   <object type="Heima8.OA.UI.Portal.Controllers.RoleInfoController, Heima8.OA.UI.Portal" singleton="false" >
     <property name="RoleInfoService" ref="RoleInfoService" />
-    
+  </object>
+
+  <object type="Heima8.OA.UI.Portal.Controllers.HomeController, Heima8.OA.UI.Portal" singleton="false" >
+    <property name="UserInfoService" ref="UserInfoService" />
+    <property name="ActionInfoService" ref="ActionInfoService" />
   </object>
 
 </objects>

@@ -111,5 +111,18 @@ namespace Heima8.OA.BLL
             //所以直接返回true或者>=0了
 
         }
+
+
+        public bool CheckExist(UserInfo model)
+        {
+            //用户就检查用户名是否相同
+            var list = DbSession.UserInfoDal.GetEntities(u => u.UName == model.UName).ToList();
+            if (list.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
