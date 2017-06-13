@@ -124,5 +124,16 @@ namespace Heima8.OA.BLL
             return false;
         }
 
+        public new bool Add(UserInfo userInfo)
+        {
+
+            if (!CheckExist(userInfo))
+            {
+                DbSession.UserInfoDal.Add(userInfo);
+                return DbSession.SaveChanges() > 0;
+            }
+            return false;
+        }
+
     }
 }

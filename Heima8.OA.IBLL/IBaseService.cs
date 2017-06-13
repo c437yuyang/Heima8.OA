@@ -21,7 +21,7 @@ namespace Heima8.OA.IBLL
 
         #region cud
 
-        T Add(T entity);
+        bool Add(T entity);
 
         bool Update(T entity);
 

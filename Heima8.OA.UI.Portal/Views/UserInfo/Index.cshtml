@@ -29,7 +29,7 @@
 
         });
 
-        //        //绑定搜索查询事件
+        //绑定搜索查询事件
         function bindSearchBtnClick() {
             $("#btnSearch").click(function () {
                 var data = { schName: $("#txtSchName").val(), schRemark: $("#txtSchReamrk").val() };
@@ -248,11 +248,6 @@
         //-------------------------添加部分开始-----------------------------------------
         //当用户点击添加时候，弹出一个添加的对话框
         function addClickEvent() {
-            //var datagirdview = $("#tt");
-            //for (var key in datagirdview) {
-            //    console.log(key + ":" + datagirdview[key]);
-            //}
-            //alert($("#tt").attr('pageNumber'));
             $("#addDialogDiv").css("display", "block");
             $("#addDialogDiv").dialog({
                 title: "添加用户",

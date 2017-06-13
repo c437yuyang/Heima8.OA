@@ -106,9 +106,16 @@ namespace Heima8.OA.UI.Portal.Controllers
             userInfo.SubTime = DateTime.Now;
             userInfo.DelFlag = (short)Heima8.OA.Model.Enum.DelFlagEnum.Normal;
 
-            UserInfoService.Add(userInfo);
+            if (UserInfoService.Add(userInfo))
+            {
+                return Content("ok");
+            }
+            else
+            {
+                return Content("添加失败，请检查用户是否已经存在!");
+            }
 
-            return Content("ok");
+            
         }
         #endregion
 

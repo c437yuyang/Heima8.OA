@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Heima8.OA.DALFactory;
 using Heima8.OA.IDAL;
 
 namespace Heima8.OA.BLL
@@ -55,19 +54,16 @@ namespace Heima8.OA.BLL
 
         #region cud
 
-        public T Add(T entity)
+        public bool Add(T entity)
         {
             //return DbSession.OrderInfoDal.Add();
 
-            //TODO:添加前要进行校验是否有相同的用户
+            //TODO:添加前要进行校验是否有相同的用户(貌似反射不好实现，只能某个类进行覆盖这个方法)
             //这里的做法只能是每个类提供一个校验的方法，这边调用
             //1.反射检查是否存在一个CheckExist的方法，如果存在就检查，如果不存在就不检查了
-
-            
-
             CurrentDal.Add(entity);
-            DbSession.SaveChanges();
-            return entity;
+            
+            return DbSession.SaveChanges() > 0;
         }
 
         public bool Update(T entity)
