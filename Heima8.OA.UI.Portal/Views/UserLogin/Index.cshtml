@@ -10,7 +10,7 @@
 <head>   
     <title>XX商城后台管理系统登录</title>
     <script type="text/javascript">
-        if (window.parent.window != window) {
+        if (window.parent.window != window) { //防止含有iframe标签的地方只是iframe标签里面跳转到登陆页面
             window.top.location.href = "/Home/CheckLogin";
         }
     </script>

@@ -33,6 +33,8 @@ namespace Heima8.OA.UI.Portal.Controllers
             var user = UserInfoService.GetEntities(u => u.ID == userId).FirstOrDefault();
             var allRole = user.RoleInfo;
 
+            ViewBag.LoginUser = user;
+
             var allRoleActionIDs = (from r in allRole
                                     from a in r.ActionInfo
                                     select a.ID).ToList();
