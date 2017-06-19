@@ -13,6 +13,12 @@ namespace Heima8.OA.DALFactory
 			as IActionInfoDal;
 	}
 		
+	public static IFileInfoDal GetFileInfoDal()
+	{
+		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".FileInfoDal")
+			as IFileInfoDal;
+	}
+		
 	public static IMenuInfoDal GetMenuInfoDal()
 	{
 		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".MenuInfoDal")
@@ -47,6 +53,24 @@ namespace Heima8.OA.DALFactory
 	{
 		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".UserInfoExtDal")
 			as IUserInfoExtDal;
+	}
+		
+	public static IWF_InstanceDal GetWF_InstanceDal()
+	{
+		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".WF_InstanceDal")
+			as IWF_InstanceDal;
+	}
+		
+	public static IWF_StepDal GetWF_StepDal()
+	{
+		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".WF_StepDal")
+			as IWF_StepDal;
+	}
+		
+	public static IWF_TempDal GetWF_TempDal()
+	{
+		return Assembly.Load(assemblyName).CreateInstance(assemblyName + ".WF_TempDal")
+			as IWF_TempDal;
 	}
 		}
 }

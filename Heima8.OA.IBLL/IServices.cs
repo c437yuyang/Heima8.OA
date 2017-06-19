@@ -9,6 +9,11 @@ namespace Heima8.OA.IBLL
 		
 	}   
 	
+	public partial interface IFileInfoService:IBaseService<FileInfo>
+	{
+		
+	}   
+	
 	public partial interface IMenuInfoService:IBaseService<MenuInfo>
 	{
 		
@@ -35,6 +40,21 @@ namespace Heima8.OA.IBLL
 	}   
 	
 	public partial interface IUserInfoExtService:IBaseService<UserInfoExt>
+	{
+		
+	}   
+	
+	public partial interface IWF_InstanceService:IBaseService<WF_Instance>
+	{
+		
+	}   
+	
+	public partial interface IWF_StepService:IBaseService<WF_Step>
+	{
+		
+	}   
+	
+	public partial interface IWF_TempService:IBaseService<WF_Temp>
 	{
 		
 	}   

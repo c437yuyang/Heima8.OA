@@ -6,6 +6,8 @@ namespace Heima8.OA.IDAL
 			
 		IActionInfoDal ActionInfoDal {get;} 
 	
+		IFileInfoDal FileInfoDal {get;} 
+	
 		IMenuInfoDal MenuInfoDal {get;} 
 	
 		IOrderInfoDal OrderInfoDal {get;} 
@@ -17,5 +19,11 @@ namespace Heima8.OA.IDAL
 		IUserInfoDal UserInfoDal {get;} 
 	
 		IUserInfoExtDal UserInfoExtDal {get;} 
+	
+		IWF_InstanceDal WF_InstanceDal {get;} 
+	
+		IWF_StepDal WF_StepDal {get;} 
+	
+		IWF_TempDal WF_TempDal {get;} 
 	}
 }

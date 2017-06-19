@@ -12,6 +12,10 @@
 		type="Heima8.OA.EFDAL.ActionInfoDal, Heima8.OA.EFDAL" singleton="false" >
 	</object>
 	
+	<object name="FileInfoDal"
+		type="Heima8.OA.EFDAL.FileInfoDal, Heima8.OA.EFDAL" singleton="false" >
+	</object>
+	
 	<object name="MenuInfoDal"
 		type="Heima8.OA.EFDAL.MenuInfoDal, Heima8.OA.EFDAL" singleton="false" >
 	</object>
@@ -34,5 +38,17 @@
 	
 	<object name="UserInfoExtDal"
 		type="Heima8.OA.EFDAL.UserInfoExtDal, Heima8.OA.EFDAL" singleton="false" >
+	</object>
+	
+	<object name="WF_InstanceDal"
+		type="Heima8.OA.EFDAL.WF_InstanceDal, Heima8.OA.EFDAL" singleton="false" >
+	</object>
+	
+	<object name="WF_StepDal"
+		type="Heima8.OA.EFDAL.WF_StepDal, Heima8.OA.EFDAL" singleton="false" >
+	</object>
+	
+	<object name="WF_TempDal"
+		type="Heima8.OA.EFDAL.WF_TempDal, Heima8.OA.EFDAL" singleton="false" >
 	</object>
 </objects>

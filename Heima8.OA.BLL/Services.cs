@@ -9,6 +9,10 @@ namespace Heima8.OA.BLL
     {
 	} 
 	
+    public partial class FileInfoService:BaseService<FileInfo>,IFileInfoService //crud
+    {
+	} 
+	
     public partial class MenuInfoService:BaseService<MenuInfo>,IMenuInfoService //crud
     {
 	} 
@@ -30,6 +34,18 @@ namespace Heima8.OA.BLL
 	} 
 	
     public partial class UserInfoExtService:BaseService<UserInfoExt>,IUserInfoExtService //crud
+    {
+	} 
+	
+    public partial class WF_InstanceService:BaseService<WF_Instance>,IWF_InstanceService //crud
+    {
+	} 
+	
+    public partial class WF_StepService:BaseService<WF_Step>,IWF_StepService //crud
+    {
+	} 
+	
+    public partial class WF_TempService:BaseService<WF_Temp>,IWF_TempService //crud
     {
 	} 
 }

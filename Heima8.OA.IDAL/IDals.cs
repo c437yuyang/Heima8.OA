@@ -10,6 +10,11 @@ namespace Heima8.OA.IDAL
        
     }   
 	
+	public partial interface IFileInfoDal : IBaseDal<FileInfo>
+    {
+       
+    }   
+	
 	public partial interface IMenuInfoDal : IBaseDal<MenuInfo>
     {
        
@@ -36,6 +41,21 @@ namespace Heima8.OA.IDAL
     }   
 	
 	public partial interface IUserInfoExtDal : IBaseDal<UserInfoExt>
+    {
+       
+    }   
+	
+	public partial interface IWF_InstanceDal : IBaseDal<WF_Instance>
+    {
+       
+    }   
+	
+	public partial interface IWF_StepDal : IBaseDal<WF_Step>
+    {
+       
+    }   
+	
+	public partial interface IWF_TempDal : IBaseDal<WF_Temp>
     {
        
     }   

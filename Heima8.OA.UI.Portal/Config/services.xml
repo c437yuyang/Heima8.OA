@@ -7,6 +7,12 @@
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
 	
+  <object name="FileInfoService" type="Heima8.OA.BLL.FileInfoService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="FileInfoDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
+	
   <object name="MenuInfoService" type="Heima8.OA.BLL.MenuInfoService, Heima8.OA.BLL" singleton="false" >
 	  <property name="DbSession" ref="DbSession" />
 	  <property name="CurrentDal" ref="MenuInfoDal" />
@@ -40,6 +46,24 @@
   <object name="UserInfoExtService" type="Heima8.OA.BLL.UserInfoExtService, Heima8.OA.BLL" singleton="false" >
 	  <property name="DbSession" ref="DbSession" />
 	  <property name="CurrentDal" ref="UserInfoExtDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
+	
+  <object name="WF_InstanceService" type="Heima8.OA.BLL.WF_InstanceService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="WF_InstanceDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
+	
+  <object name="WF_StepService" type="Heima8.OA.BLL.WF_StepService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="WF_StepDal" />
+	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
+  </object>
+	
+  <object name="WF_TempService" type="Heima8.OA.BLL.WF_TempService, Heima8.OA.BLL" singleton="false" >
+	  <property name="DbSession" ref="DbSession" />
+	  <property name="CurrentDal" ref="WF_TempDal" />
 	  <!--<constructor-arg index="0" ref="DbSession"></constructor-arg>-->
   </object>
 </objects>

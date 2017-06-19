@@ -1,0 +1,74 @@
+﻿@using Heima8.OA.Model
+@model Heima8.OA.Model.WF_Instance
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+<link href="~/Content/kindeditor-4.0.5/themes/default/default.css" rel="stylesheet"/>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Content/kindeditor-4.0.5/kindeditor-min.js"></script>
+<script src="~/Content/kindeditor-4.0.5/lang/zh_CN.js"></script>
+<script>
+    var editor_TempForm;
+    KindEditor.ready(function(K) {
+        editor_TempForm = K.create('textarea[name="InstanceContent"]', {
+            resizeType: 1,
+            allowPreviewEmoticons: false,
+            allowImageUpload: false,
+            items: [
+                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link'
+            ]
+        });
+    });
+</script>
+
+
+
+@{
+    WF_Temp template = ViewBag.Template;
+}
+
+<table>
+    <tr>
+        <td>流程类型:</td>
+        <td>@template.TepName</td>
+    </tr>
+    <tr>
+        <td>流程描述:</td>
+        <td>@Html.Raw(template.Description)</td>
+    </tr>
+    <tr>
+        <td>流程名称:</td>
+        <td>@Html.EditorFor(m => m.InstanceName)</td>
+    </tr>
+
+    <tr>
+        <td>转接到:</td>
+        <td>@Html.DropDownList("UserList")</td>
+    </tr>
+    <tr>
+        <td>申请内容:</td>
+        <td>
+            <textarea name="InstanceContent" style="width: 300px; height: 80px; visibility: hidden;">
+                @Html.Raw(template.TempForm)<!--输出原始HTML元素-->
+            </textarea>            
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

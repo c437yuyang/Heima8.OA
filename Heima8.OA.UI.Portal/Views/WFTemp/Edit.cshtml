@@ -1,0 +1,124 @@
+﻿@model Heima8.OA.Model.WF_Temp
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="~/Content/kindeditor-4.0.5/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Content/kindeditor-4.0.5/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.0.5/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+        function submitForm() {
+            $("form").submit();
+        }
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        var editor_Description;
+        KindEditor.ready(function (K) {
+            editor_Description = K.create('textarea[name="Description"]', {
+                resizeType: 1,
+                allowPreviewEmoticons: false,
+                allowImageUpload: false,
+                items: [
+                    'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                    'insertunorderedlist', '|', 'emoticons', 'image', 'link'
+                ]
+            });
+        });
+
+        var editor_TempForm;
+        KindEditor.ready(function (K) {
+            editor_TempForm = K.create('textarea[name="TempForm"]', {
+                resizeType: 1,
+                allowPreviewEmoticons: false,
+                allowImageUpload: false,
+                items: [
+                    'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                    'insertunorderedlist', '|', 'emoticons', 'image', 'link'
+                ]
+            });
+        });
+
+
+        function afterEditSuccess(data) {
+            if (data == "ok") {
+                window.parent.window.afterEditSuccess();
+            } else {
+                alert("败了");
+            }
+        }
+
+    </script>
+
+
+
+    @using (Ajax.BeginForm(new AjaxOptions() { OnSuccess = "afterEditSuccess" }))
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>修改Workflow模板</legend>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TepName, "Workflow名称")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TepName)
+                @Html.ValidationMessageFor(model => model.TepName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description, "Workflow描述")
+            </div>
+            <div class="editor-field">
+                <textarea name="Description" style="width: 300px; height: 80px; visibility: hidden;">
+                    @Model.Description
+                </textarea>
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TempForm, "Workflow表单模板")
+            </div>
+            <div class="editor-field">
+                <textarea name="TempForm" style="width: 300px; height: 80px; visibility: hidden;">
+                    @Model.TempForm
+                </textarea>
+                @Html.ValidationMessageFor(model => model.TempForm)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark, "备注")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Remark)
+                @Html.ValidationMessageFor(model => model.Remark)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ActityType, "流程类型")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ActityType)
+                @Html.ValidationMessageFor(model => model.ActityType)
+            </div>
+                @Html.HiddenFor(model => model.DelFlag)
+                @Html.HiddenFor(model => model.SubTime)
+            <p>
+                <input type="submit" value="提交" />
+            </p>
+
+        </fieldset>
+    }
+</body>
+</html>

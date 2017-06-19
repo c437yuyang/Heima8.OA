@@ -42,7 +42,6 @@
                 @Html.EditorFor(model => model.RoleName)
                 @Html.ValidationMessageFor(model => model.RoleName)
             </div>
-            
             <div class="editor-label">
                 @Html.LabelFor(model => model.Remark,"备注")
             </div>
@@ -50,8 +49,6 @@
                 @Html.EditorFor(model => model.Remark)
                 @Html.ValidationMessageFor(model => model.Remark)
             </div>    
-
-
                 @Html.HiddenFor(model => model.DelFlag)
                 @Html.HiddenFor(model => model.ModfiedOn)
                 @Html.HiddenFor(model => model.SubTime)
