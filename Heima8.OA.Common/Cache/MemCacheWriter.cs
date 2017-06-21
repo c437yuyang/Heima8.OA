@@ -68,5 +68,10 @@ namespace Heima8.OA.Common.Cache
         {
             _memcachedClient.Set(key, value);
         }
+
+        public void RemoveCache(string key)
+        {
+            _memcachedClient.Delete(key);
+        }
     }
 }

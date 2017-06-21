@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Heima8.OA.Common;
 using Heima8.OA.Common.Cache;
 using Heima8.OA.IBLL;
 using Heima8.OA.Model;
@@ -45,6 +46,7 @@ namespace Heima8.OA.UI.Portal.Controllers
 
             if (IsCheckLogin)
             {
+                //先检查cache是否存在
                 if (Request.Cookies["userLoginGuid"] == null)
                 {
                     filterContext.HttpContext.Response.Redirect("/UserLogin/Index");

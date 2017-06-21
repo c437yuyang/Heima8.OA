@@ -61,6 +61,17 @@
     <Compile Include="SqlServerWriter.cs" />
     <Compile Include="TextFileWriter.cs" />
     <Compile Include="ValidateCode.cs" />
+    <Compile Include="WebCommon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Heima8.OA.IBLL\Heima8.OA.IBLL.csproj">
+      <Project>{1FB7B99A-F568-4ADE-BB48-4FDE85536F25}</Project>
+      <Name>Heima8.OA.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Heima8.OA.Model\Heima8.OA.Model.csproj">
+      <Project>{8E5A850C-ECD7-4272-ABDD-0A5864033B6B}</Project>
+      <Name>Heima8.OA.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

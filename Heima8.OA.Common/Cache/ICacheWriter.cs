@@ -13,7 +13,7 @@ namespace Heima8.OA.Common.Cache
 
         void SetCache(string key, object value, DateTime expDate);
         void SetCache(string key, object value);
-
+        void RemoveCache(string key);
 
     }
 }

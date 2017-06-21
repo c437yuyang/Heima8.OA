@@ -36,5 +36,10 @@ namespace Heima8.OA.Common.Cache
             HttpRuntime.Cache.Remove(key);
             AddCache(key, value);
         }
+
+        public void RemoveCache(string key)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

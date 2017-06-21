@@ -15,6 +15,7 @@ namespace Heima8.OA.UI.Portal.Controllers
         // GET: /Home/
         public IUserInfoService UserInfoService { get; set; }
         public IActionInfoService ActionInfoService { get; set; }
+        //public UserInfo LoginUser { get; set; }
         public ActionResult Index()
         {
             ViewBag.AllMenu = LoadUserMenu();
@@ -69,5 +70,8 @@ namespace Heima8.OA.UI.Portal.Controllers
             return actionList;
 
         }
+
+
+
     }
 }

@@ -32,13 +32,16 @@ namespace MemCachedDemo
             mc.EnableCompression = false;
 
 
-//            mc.Add("key1", "abc1");
-//            mc.Add("key2", "abc2");
-//            mc.Add("key3", "abc3");
-//            mc.Add("key4", "abc4");
+            mc.Add("key1", "abc1");
+            mc.Add("key2", "abc2");
+            mc.Add("key3", "abc3");
+            mc.Add("key4", "abc4");
             mc.Add("key5", "a", DateTime.Now.AddDays(1)); //一天过期
-
+            Console.WriteLine(mc.Get("key4"));
+            mc.Delete("key4");
+            //mc.Add("key4", "abc4",DateTime.Now.AddDays(-2));
             Console.WriteLine(mc.Get("key2"));
+            Console.WriteLine(mc.Get("key4"));
             Console.WriteLine(mc.Get("key3"));
 
 

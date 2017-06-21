@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Spring.Context;
 using Spring.Context.Support;
 
@@ -36,6 +32,11 @@ namespace Heima8.OA.Common.Cache
         public static void SetCache(string key, object value, DateTime expDate)
         {
             _CacheWriter.SetCache(key,value,expDate);
+        }
+
+        public static void RemoveCache(string key)
+        {
+            _CacheWriter.RemoveCache(key);
         }
 
 
